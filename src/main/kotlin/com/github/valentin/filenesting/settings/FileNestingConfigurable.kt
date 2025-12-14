@@ -1,6 +1,8 @@
 package com.github.valentin.filenesting.settings
 
+import com.intellij.ide.projectView.ProjectView
 import com.intellij.openapi.options.BoundConfigurable
+import com.intellij.openapi.project.ProjectManager
 import com.intellij.openapi.ui.DialogPanel
 import com.intellij.ui.dsl.builder.bindSelected
 import com.intellij.ui.dsl.builder.panel
@@ -45,6 +47,20 @@ class FileNestingConfigurable : BoundConfigurable("File Nesting") {
                     <b>*.ts</b> will group: corresponding .js, .d.ts, .map files
                     """.trimIndent()
                 )
+            }
+        }
+    }
+
+    override fun apply() {
+        super.apply()
+        // Refresh all open project views to apply the change immediately
+        refreshAllProjectViews()
+    }
+
+    private fun refreshAllProjectViews() {
+        for (project in ProjectManager.getInstance().openProjects) {
+            if (!project.isDisposed) {
+                ProjectView.getInstance(project).refresh()
             }
         }
     }

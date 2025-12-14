@@ -4,6 +4,7 @@ import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
+import com.intellij.openapi.components.service
 
 /**
  * Persistent settings for the File Nesting plugin.
@@ -37,11 +38,8 @@ class FileNestingSettings : PersistentStateComponent<FileNestingSettings.State> 
 
     companion object {
         /**
-         * Get the settings instance.
+         * Get the settings instance using modern service API.
          */
-        fun getInstance(): FileNestingSettings {
-            return com.intellij.openapi.application.ApplicationManager.getApplication()
-                .getService(FileNestingSettings::class.java)
-        }
+        fun getInstance(): FileNestingSettings = service()
     }
 }

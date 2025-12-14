@@ -1,6 +1,7 @@
 package com.github.valentin.filenesting
 
 import com.intellij.ide.projectView.PresentationData
+import com.intellij.ide.projectView.ProjectViewNode
 import com.intellij.ide.projectView.ViewSettings
 import com.intellij.ide.projectView.impl.nodes.PsiFileNode
 import com.intellij.ide.util.treeView.AbstractTreeNode
@@ -14,6 +15,9 @@ import com.intellij.psi.PsiFile
  * This node wraps a [PsiFileNode] (the parent file) and displays its nested children
  * as expandable child nodes in the Project View.
  *
+ * Extends [ProjectViewNode] to properly support "Select Opened File" functionality
+ * via the [contains] method.
+ *
  * @param project The current project
  * @param parentNode The parent file node that will be displayed
  * @param nestedChildren The child file nodes to nest under the parent
@@ -24,9 +28,7 @@ class NestingGroupNode(
     private val parentNode: PsiFileNode,
     private val nestedChildren: List<PsiFileNode>,
     settings: ViewSettings
-) : AbstractTreeNode<PsiFile>(project, parentNode.value) {
-
-    private val viewSettings: ViewSettings = settings
+) : ProjectViewNode<PsiFile>(project, parentNode.value, settings) {
 
     override fun getChildren(): Collection<AbstractTreeNode<*>> {
         return nestedChildren
@@ -48,8 +50,11 @@ class NestingGroupNode(
         }
     }
 
-    fun containsFile(file: VirtualFile): Boolean {
-        // Check if this node contains the given file
+    /**
+     * Check if this node contains the given file.
+     * This is called by "Select Opened File" to find and expand the correct node.
+     */
+    override fun contains(file: VirtualFile): Boolean {
         val parentFile = parentNode.virtualFile
         if (parentFile == file) {
             return true

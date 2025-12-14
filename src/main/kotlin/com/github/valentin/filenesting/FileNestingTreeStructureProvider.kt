@@ -9,7 +9,6 @@ import com.intellij.ide.projectView.ViewSettings
 import com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode
 import com.intellij.ide.projectView.impl.nodes.PsiFileNode
 import com.intellij.ide.util.treeView.AbstractTreeNode
-import com.intellij.openapi.application.ApplicationManager
 
 /**
  * A [TreeStructureProvider] that groups related files under their parent files
@@ -28,8 +27,7 @@ class FileNestingTreeStructureProvider : TreeStructureProvider {
         settings: ViewSettings
     ): Collection<AbstractTreeNode<*>> {
         // Check if file nesting is enabled
-        val nestingSettings = ApplicationManager.getApplication().getService(FileNestingSettings::class.java)
-        if (!nestingSettings.state.enabled) {
+        if (!FileNestingSettings.getInstance().state.enabled) {
             return children
         }
 

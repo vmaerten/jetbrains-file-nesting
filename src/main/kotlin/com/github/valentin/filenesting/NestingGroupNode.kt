@@ -72,16 +72,6 @@ class NestingGroupNode(
 
     override fun getVirtualFile(): VirtualFile? = parentNode.virtualFile
 
-    /**
-     * Returns the underlying parent file node.
-     */
-    fun getParentFileNode(): PsiFileNode = parentNode
-
-    /**
-     * Returns the nested child file nodes.
-     */
-    fun getNestedChildren(): List<PsiFileNode> = nestedChildren
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is NestingGroupNode) return false

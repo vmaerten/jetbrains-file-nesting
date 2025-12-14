@@ -29,6 +29,7 @@ object DefaultPatterns {
             // === Configuration Files ===
             gitignore(),
             dockerfile(),
+            taskfile(),
             env(),
             tsconfigJson(),
             denoJson(),
@@ -253,6 +254,11 @@ object DefaultPatterns {
             ".devcontainer.json", "devcontainer.json",
             "captain-definition",
         )
+    )
+
+    private fun taskfile() = NestingPattern(
+        parent = "Taskfile.yml",
+        children = listOf(".taskrc.yml", ".taskrc.yaml")
     )
 
     private fun env() = NestingPattern(

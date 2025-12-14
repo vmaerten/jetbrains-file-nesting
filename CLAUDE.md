@@ -13,7 +13,7 @@ Ce plugin utilise l'API `TreeStructureProvider` pour modifier l'arborescence du 
 ## Architecture
 
 ```
-src/main/kotlin/com/github/valentin/filenesting/
+src/main/kotlin/com/github/vmaerten/filenesting/
 ├── FileNestingTreeStructureProvider.kt   # Point d'entrée - modifie le Project View
 ├── NestingGroupNode.kt                   # Nœud custom pour afficher parent + enfants
 ├── patterns/

@@ -1,9 +1,9 @@
-package com.github.valentin.filenesting
+package com.github.vmaerten.filenesting
 
-import com.github.valentin.filenesting.patterns.DefaultPatterns
-import com.github.valentin.filenesting.patterns.NestingPattern
-import com.github.valentin.filenesting.patterns.PatternMatcher
-import com.github.valentin.filenesting.settings.FileNestingSettings
+import com.github.vmaerten.filenesting.patterns.DefaultPatterns
+import com.github.vmaerten.filenesting.patterns.NestingPattern
+import com.github.vmaerten.filenesting.patterns.PatternMatcher
+import com.github.vmaerten.filenesting.settings.FileNestingSettings
 import com.intellij.ide.projectView.TreeStructureProvider
 import com.intellij.ide.projectView.ViewSettings
 import com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode

@@ -1,4 +1,4 @@
-package com.github.valentin.filenesting
+package com.github.vmaerten.filenesting
 
 import com.intellij.ide.projectView.PresentationData
 import com.intellij.ide.projectView.ProjectViewNode

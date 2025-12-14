@@ -1,7 +1,7 @@
 <idea-plugin>
-    <id>com.github.valentin.filenesting</id>
+    <id>com.github.vmaerten.filenesting</id>
     <name>File Nesting Config</name>
-    <vendor email="valentin@example.com" url="https://github.com/valentin">Valentin</vendor>
+    <vendor email="maerten.valentin@gmail.com" url="https://github.com/vmaerten">Valentin</vendor>
 
     <description><![CDATA[
     Advanced file nesting for JetBrains IDEs, similar to VS Code's file nesting feature.
@@ -21,16 +21,16 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <treeStructureProvider
-                implementation="com.github.valentin.filenesting.FileNestingTreeStructureProvider"
+                implementation="com.github.vmaerten.filenesting.FileNestingTreeStructureProvider"
                 order="last"/>
 
         <applicationConfigurable
                 parentId="appearance"
-                instance="com.github.valentin.filenesting.settings.FileNestingConfigurable"
-                id="com.github.valentin.filenesting.settings.FileNestingConfigurable"
+                instance="com.github.vmaerten.filenesting.settings.FileNestingConfigurable"
+                id="com.github.vmaerten.filenesting.settings.FileNestingConfigurable"
                 displayName="File Nesting"/>
 
         <applicationService
-                serviceImplementation="com.github.valentin.filenesting.settings.FileNestingSettings"/>
+                serviceImplementation="com.github.vmaerten.filenesting.settings.FileNestingSettings"/>
     </extensions>
 </idea-plugin>

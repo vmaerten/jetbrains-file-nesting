@@ -1,4 +1,4 @@
-package com.github.valentin.filenesting.patterns
+package com.github.vmaerten.filenesting.patterns
 
 /**
  * Represents a file nesting pattern.

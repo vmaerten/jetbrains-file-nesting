@@ -1,4 +1,4 @@
-package com.github.valentin.filenesting.patterns
+package com.github.vmaerten.filenesting.patterns
 
 import java.util.concurrent.ConcurrentHashMap
 

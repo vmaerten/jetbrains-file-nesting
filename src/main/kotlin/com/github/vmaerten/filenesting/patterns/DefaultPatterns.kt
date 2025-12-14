@@ -1,4 +1,4 @@
-package com.github.valentin.filenesting.patterns
+package com.github.vmaerten.filenesting.patterns
 
 /**
  * Default file nesting patterns, ported from antfu/vscode-file-nesting-config.

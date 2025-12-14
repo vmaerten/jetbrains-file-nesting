@@ -1,4 +1,4 @@
-package com.github.valentin.filenesting.settings
+package com.github.vmaerten.filenesting.settings
 
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.Service

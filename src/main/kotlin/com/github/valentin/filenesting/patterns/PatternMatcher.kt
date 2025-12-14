@@ -1,12 +1,16 @@
 package com.github.valentin.filenesting.patterns
 
+import java.util.concurrent.ConcurrentHashMap
+
 /**
  * Utility object for matching file names against glob-like patterns.
  * Supports wildcards (*) for matching any sequence of characters.
+ *
+ * Thread-safe: uses [ConcurrentHashMap] for caching compiled regex patterns.
  */
 object PatternMatcher {
 
-    private val regexCache = mutableMapOf<String, Regex>()
+    private val regexCache = ConcurrentHashMap<String, Regex>()
 
     /**
      * Check if a filename matches a glob-like pattern.

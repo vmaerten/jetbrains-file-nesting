@@ -48,8 +48,9 @@ intellijPlatform {
     }
 
     signing {
-        certificateChain = providers.environmentVariable("CERTIFICATE_CHAIN")
-        privateKey = providers.environmentVariable("PRIVATE_KEY")
+        val signingDir = file(System.getProperty("user.home")).resolve(".config/jetbrains-signing")
+        certificateChainFile = signingDir.resolve("chain.crt")
+        privateKeyFile = signingDir.resolve("private.pem")
         password = providers.environmentVariable("PRIVATE_KEY_PASSWORD")
     }
 

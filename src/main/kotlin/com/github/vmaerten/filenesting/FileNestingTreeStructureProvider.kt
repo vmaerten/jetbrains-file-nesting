@@ -52,61 +52,46 @@ class FileNestingTreeStructureProvider : TreeStructureProvider {
 
         // Track which files have been nested (to avoid showing them at the top level)
         val nestedFilenames = mutableSetOf<String>()
+        // Track which files have become parents (to avoid duplicates)
+        val parentFilenames = mutableSetOf<String>()
+        // Collect parent groups
+        val parentGroups = mutableListOf<NestingGroupNode>()
 
-        // Process each file to find parent-child relationships
-        val result = mutableListOf<AbstractTreeNode<*>>()
+        // Process patterns in order of definition - first pattern wins
+        for (pattern in DefaultPatterns.patterns) {
+            // Find all files matching this pattern's parent
+            for ((filename, node) in filenameToNode) {
+                // Skip if already nested under another parent or already a parent
+                if (filename in nestedFilenames || filename in parentFilenames) {
+                    continue
+                }
 
-        for (node in fileNodes) {
-            val filename = node.virtualFile?.name ?: continue
+                // Check if this file matches the current pattern's parent
+                if (!PatternMatcher.matches(pattern.parent, filename)) {
+                    continue
+                }
 
-            // Skip files that are already nested under another parent
-            if (filename in nestedFilenames) {
-                continue
-            }
-
-            // Check if this file is a parent according to our patterns
-            val matchingPattern = findMatchingParentPattern(filename)
-
-            if (matchingPattern != null) {
-                // Find all children for this parent
-                val childFilenames = findChildFilenames(matchingPattern, filename, allFilenames)
+                // Find children (excluding already nested files)
+                val childFilenames = findChildFilenames(pattern, filename, allFilenames)
+                    .filter { it !in nestedFilenames && it != filename }
                 val childNodes = childFilenames.mapNotNull { filenameToNode[it] }
 
-                // Mark children as nested
-                nestedFilenames.addAll(childFilenames)
-
                 if (childNodes.isNotEmpty()) {
-                    // Create a nesting group node
-                    result.add(NestingGroupNode(project, node, childNodes, settings))
-                } else {
-                    // No children found, add the node as-is
-                    result.add(node)
+                    // Mark children as nested
+                    nestedFilenames.addAll(childFilenames)
+                    parentFilenames.add(filename)
+                    parentGroups.add(NestingGroupNode(project, node, childNodes, settings))
                 }
-            } else {
-                // Not a parent file, add as-is (unless it becomes nested later)
-                result.add(node)
             }
         }
 
-        // Remove any files that got nested after they were added to result
-        val finalFileNodes = result.filter { node ->
-            when (node) {
-                is PsiFileNode -> node.virtualFile?.name !in nestedFilenames
-                is NestingGroupNode -> true
-                else -> true
-            }
+        // Collect standalone files (not nested and not a parent with children)
+        val standaloneFiles = fileNodes.filter {
+            val name = it.virtualFile?.name ?: ""
+            name !in nestedFilenames && name !in parentFilenames
         }
 
-        return otherNodes + finalFileNodes
-    }
-
-    /**
-     * Find a pattern where the given filename matches the parent pattern.
-     */
-    private fun findMatchingParentPattern(filename: String): NestingPattern? {
-        return DefaultPatterns.patterns.find { pattern ->
-            PatternMatcher.matches(pattern.parent, filename)
-        }
+        return otherNodes + parentGroups + standaloneFiles
     }
 
     /**

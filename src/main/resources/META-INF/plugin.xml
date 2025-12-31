@@ -1,6 +1,6 @@
 <idea-plugin>
     <id>com.github.vmaerten.filenesting</id>
-    <name>File Nesting Config</name>
+    <name>File Nesting</name>
     <vendor email="maerten.valentin@gmail.com" url="https://github.com/vmaerten">Valentin</vendor>
 
     <description><![CDATA[

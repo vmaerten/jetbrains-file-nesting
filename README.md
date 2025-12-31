@@ -1,4 +1,4 @@
-# File Nesting Config
+# File Nesting
 
 Advanced file nesting for JetBrains IDEs, similar to VS Code's file nesting feature.
 
@@ -6,7 +6,7 @@ Groups related configuration files under their parent file in the Project View.
 
 ## Installation
 
-Install from the [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/XXXXX-file-nesting-config) or search for "File Nesting Config" in your IDE's plugin settings.
+Install from the [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/29503-file-nesting) or search for "File Nesting" in your IDE's plugin settings.
 
 ## Usage
 

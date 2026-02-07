@@ -149,6 +149,8 @@ object DefaultPatterns {
             ".knip.json", "knip.json", "knip.config.*", "knip.ts",
             "biome.json", "biome.jsonc",
             "dprint.json", ".dprint.json", "dprint.jsonc", ".dprint.jsonc",
+            ".oxlintrc.json",
+            ".oxfmtrc.json", ".oxfmtrc.jsonc",
             ".watchmanconfig",
         )
     )
@@ -562,6 +564,8 @@ object DefaultPatterns {
         ".eslintrc", ".eslintrc.*", "eslint.config.*", ".eslintignore",
         ".prettierrc", ".prettierrc.*", "prettier.config.*", ".prettierignore",
         ".stylelintrc", ".stylelintrc.*", "stylelint.config.*", ".stylelintignore",
+        ".oxlintrc.json",
+        ".oxfmtrc.json", ".oxfmtrc.jsonc",
 
         // Build
         ".babelrc", ".babelrc.*", "babel.config.*",

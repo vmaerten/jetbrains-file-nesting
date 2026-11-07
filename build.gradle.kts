@@ -67,6 +67,6 @@ intellijPlatform {
 
 tasks {
     wrapper {
-        gradleVersion = "8.13"
+        gradleVersion = "9.9.0"
     }
 }

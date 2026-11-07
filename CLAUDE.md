@@ -71,10 +71,11 @@ Classe custom qui wrap un `PsiFileNode` parent et affiche ses enfants comme sous
 
 ## Configuration
 
-- **Cible** : IntelliJ 2025.1 → 2025.3 (`sinceBuild = "251"`, `untilBuild = "253.*"`)
-- **Kotlin** : 2.1.0
+- **Cible** : IntelliJ 2025.1 → 2026.3 (`sinceBuild = "251"`, `untilBuild = "263.*"`)
+- **Kotlin** : 2.4.21
 - **Java** : 21
-- **IntelliJ Platform Gradle Plugin** : 2.2.1
+- **IntelliJ Platform Gradle Plugin** : 2.20.0
+- **Gradle** : 9.9.0 (la toolchain exige un JDK 21 installé : `mise exec java@21 -- ./gradlew build`)
 
 ## Fichiers clés à modifier
 
